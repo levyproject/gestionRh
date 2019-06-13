@@ -19,4 +19,12 @@ class salarie extends Model
     ];  
 
     public $timestamps = false;
+
+    public function getNiveau(){
+        return niveau_etude::where('id_niveau', $this->id_niveau)->first()->designation;
+    }
+
+    public function getSuivi(){
+        return suivi_salarie::where('id_suivi', $this->id_suivi)->first()->motivation;
+    }
 }

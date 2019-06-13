@@ -12,6 +12,7 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
+  <a class="addSalarie" href={{ route('salarie.create') }}><button class="btn btn-secondary"> Ajoutez un nouveau salarié</button></a>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -33,8 +34,8 @@
             <td>{{$salarie->prenom}}</td>
             <td>{{$salarie->sexe}}</td>
             <td>{{$salarie->date_naissance}}</td>
-            <td>{{$salarie->id_niveau}}</td>
-            <td>{{$salarie->id_suivi}}</td>
+            <td>{{$salarie->getNiveau()}}</td>
+            <td>{{$salarie->getSuivi()}}</td>
             <td><a href="{{ route('salarie.edit', $salarie->id_salarie)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{{ route('salarie.destroy', $salarie->id_salarie)}}" method="delete">

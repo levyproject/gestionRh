@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\salarie;
+use App\niveau_etude;
+use App\suivi_salarie;
 
 class SalarieController extends Controller
 {
@@ -16,7 +18,7 @@ class SalarieController extends Controller
     {
         $salaries = salarie::all();
 
-        return view('salarie_index', compact('salaries'));
+        return view('salarie_index', compact('salaries'), compact('niveau_etude'));
     }
 
     /**
@@ -26,8 +28,10 @@ class SalarieController extends Controller
      */
     public function create()
     {
+        $niveau_etude = niveau_etude::all();
+        $suivi_salarie = suivi_salarie::all();
 
-       return view('salarie_create');
+       return view('salarie_create', compact('niveau_etude'), compact('suivi_salarie'));
     }
 
     /**
@@ -78,8 +82,14 @@ class SalarieController extends Controller
     public function edit($id_salarie)
     {
         $salarie = salarie::find($id_salarie);
+        $niveau_etudes = niveau_etude::all();
+        $suivi_salaries = suivi_salarie::all();
 
-        return view('salarie_edit', compact('salarie'));
+        // $test = compact($suivi_salaries);
+
+
+
+        return view('salarie_edit', compact('salarie'), compact('niveau_etudes'));
     }
 
     /**
@@ -98,7 +108,7 @@ class SalarieController extends Controller
         $salarie->date_naissance = $request->get('salarie_date_naissance');
         $salarie->id_niveau = $request->get('salarie_id_niveau');
         $salarie->id_suivi = $request->get('salarie_id_suivi');
-        $share->save();
+        $salarie->save();
   
         return redirect('/salarie')->with('success', 'Stock has been updated');
     }
@@ -112,8 +122,6 @@ class SalarieController extends Controller
     public function destroy($id_salarie)
     {
         $salarie = salarie::find($id_salarie);
-        dd($salarie);
-        var_dump($salarie);
         $salarie->delete();
 
         return redirect('/salarie')->with('success', 'Le salarié a été correctement supprimé');

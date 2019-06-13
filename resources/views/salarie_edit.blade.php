@@ -8,7 +8,7 @@
 </style>
 <div class="card uper">
   <div class="card-header">
-    Edit Share
+    Modifier un salarié
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -20,7 +20,7 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('salarie.update', $salarie->id_salarie) }}">
+      <form action="{{ route('salarie.update', $salarie->id_salarie) }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">   
         <div class="form-group">
           <label for="Nom">Nom :</label>
@@ -30,10 +30,10 @@
           <label for="Prenom">Prenom :</label>
           <input type="text" class="form-control" name="salarie_prenom" value={{ $salarie->prenom }} />
         </div>
-        <div class="form-group">
-          <label for="sexe">Sexe :</label>
-          F <input type="radio" class="form-control" name="salarie_sexe" value="F"  @if($salarie->sexe =='F') checked @endif /><br>
-          M <input type="radio" class="form-control" name="salarie_sexe" value="M"  @if($salarie->sexe =='M') checked @endif/>
+        <div class="form-group form_sexe">
+          <label for="sexe">Sexe :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+          F &nbsp;&nbsp;<input type="radio" class="" name="salarie_sexe" value="F"  @if($salarie->sexe =='F') checked @endif /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          M &nbsp;&nbsp;<input type="radio" class="" name="salarie_sexe" value="M"  @if($salarie->sexe =='M') checked @endif/>
         </div>
         <div class="form-group">
           <label for="date">Date de naissance :</label>
@@ -41,10 +41,32 @@
         </div>
         <div class="form-group">
           <label for="niveau">Niveau d'étude :</label>
+          {{-- <select class="form-control" name="salarie_id_niveau">
+            @foreach ( $niveau_etudes as $niveau )
+                <option value="{{ $niveau->id_niveau }}" 
+                 @if ($salarie->id_niveau == $niveau->id_niveau)
+                     selected=""
+                 @endif
+                > {{ $niveau->designation }} </option>
+            @endforeach
+          </select> --}}
           <input type="number" class="form-control" name="salarie_id_niveau" value="{{ $salarie->id_niveau }}" />
         </div>
         <div class="form-group">
-          <label for="suivi">:</label>
+          <label for="suivi">Suivi Salarié:</label>
+          {{-- <select class="form-control" name="salarie_id_suivi"> --}}
+            {{-- @foreach ( $suivi_salaries as $suivi )
+                <option>{{ $suivi->motivation }}</option>
+            @endforeach --}}
+
+            {{-- @foreach ( $suivi_salarie as $suivi )
+              <option value="{{ $suivi->id_suivi }}" 
+                @if ($salarie->id_suivi == $niveau->id_niveau)
+                    selected=""
+                @endif
+              > {{ $suivi->motivation }} </option> --}}
+            {{-- @endforeach --}}
+          {{-- </select> --}}
           <input type="number" class="form-control" name="salarie_id_suivi" value="{{ $salarie->id_suivi }}" />
         </div>
         <button type="submit" class="btn btn-primary">Mettre à jour</button>
