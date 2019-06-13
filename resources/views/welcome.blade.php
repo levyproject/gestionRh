@@ -1,21 +1,22 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Gestionrh</title>
+        <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
@@ -51,7 +52,7 @@
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -67,28 +68,27 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @auth
+                    @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                        <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('/register') }}">Register</a>
+                    @endif
                 </div>
             @endif
 
             <div class="content">
-            <img id="img" src="{{ asset('img/rhh.png') }}">
+                        <img src="{{ asset('img/rhhh.jpg') }}">
+
                 <div class="title m-b-md">
-                    Outil gestion RH
+                    Gestion RH
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Salariés</a>
-                    <a href="https://laravel.com/docs">Absences</a>
-                    <a href="https://laravel.com/docs">Candidats</a>
+                    <a href="{{ url('/salarie') }}">Salariés</a>
+                    <a href="https://laracasts.com">Absence</a>
+                    <a href="https://laravel-news.com">Candidats</a>
+                    <a href="{{ url('/analyse') }}">Analyse de données</a>
                 </div>
             </div>
         </div>
