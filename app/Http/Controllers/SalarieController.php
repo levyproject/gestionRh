@@ -18,7 +18,7 @@ class SalarieController extends Controller
     {
         $salaries = salarie::all();
 
-        return view('salarie_index', compact('salaries'), compact('niveau_etude'));
+        return view('salarie/salarie_index', compact('salaries'), compact('niveau_etude'));
     }
 
     /**
@@ -31,7 +31,7 @@ class SalarieController extends Controller
         $niveau_etude = niveau_etude::all();
         $suivi_salarie = suivi_salarie::all();
 
-       return view('salarie_create', compact('niveau_etude'), compact('suivi_salarie'));
+       return view('salarie/salarie_create', compact('niveau_etude'), compact('suivi_salarie'));
     }
 
     /**
@@ -89,7 +89,7 @@ class SalarieController extends Controller
 
 
 
-        return view('salarie_edit', compact('salarie'), compact('niveau_etudes'));
+        return view('salarie/salarie_edit', compact('salarie'), compact('niveau_etudes'));
     }
 
     /**
@@ -121,9 +121,11 @@ class SalarieController extends Controller
      */
     public function destroy($id_salarie)
     {
-        $salarie = salarie::find($id_salarie);
-        $salarie->delete();
+        // $salarie = salarie::find($id_salarie);
+        // $salarie->delete();
 
-        return redirect('/salarie')->with('success', 'Le salarié a été correctement supprimé');
+        DB::table('salarie')->where('id_salarie', $id_salarie)->delete();
+
+        return redirect('/')->with('success', 'Le salarié a été correctement supprimé');
     }
 }

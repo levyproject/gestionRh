@@ -38,10 +38,10 @@
             <td>{{$salarie->getSuivi()}}</td>
             <td><a href="{{ route('salarie.edit', $salarie->id_salarie)}}" class="btn btn-primary">Edit</a></td>
             <td>
-                <form action="{{ route('salarie.destroy', $salarie->id_salarie)}}" method="delete">
+                <form action="{{ route('salarie.destroy', $salarie->id_salarie)}}">
                   {{-- @csrf --}}
                   {{-- @method('DELETE') --}}
-                  <button class="btn btn-danger"  type="submit">Delete</button>
+                  <a href="{{ route('salarie.destroy', $salarie->id_salarie)}}"><button class="btn btn-danger"  type="submit">Delete</button>
                 </form>
             </td>
         </tr>
