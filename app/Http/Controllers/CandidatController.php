@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\candidat;
 use App\niveau_etude;
+use App\rechercher;
 
 class CandidatController extends Controller
 {
@@ -17,6 +18,7 @@ class CandidatController extends Controller
     {
         $candidats = candidat::all();
         $niveau_etude = niveau_etude::all();
+
 
         return view('candidat/candidat_index', compact('candidats'), compact('niveau_etude'));
     }
