@@ -17,7 +17,7 @@ class SalarieController extends Controller
     public function index()
     {
         $salaries = salarie::all();
-
+        $niveau_etude = niveau_etude::all();
         return view('salarie/salarie_index', compact('salaries'), compact('niveau_etude'));
     }
 
@@ -98,8 +98,9 @@ class SalarieController extends Controller
      */
     public function update(Request $request, $id_salarie)
     {
-
-        return view('salarie/salarie_index');
+        $salarie = salarie::findOrFail($id_salarie);
+        $salarie->update(['nom' => $request->salarie_nom, 'prenom' => $request->salarie_prenom, 'sexe' => $request->salarie_sexe, 'date_naissance' => $request->salarie_date_naissance, 'id_niveau' => $request->salarie_id_niveau, 'id_suivi' => $request->salarie_id_suivi]);
+        return view('welcome');
         // $salarie = salarie::find($id_salarie);
         // dd($salarie);
         // var_dump($salarie);
@@ -126,9 +127,8 @@ class SalarieController extends Controller
     {
         // $salarie = salarie::find($id_salarie);
         // $salarie->delete();
-
-        DB::table('salarie')->where('id_salarie', $id_salarie)->delete();
-
-        return redirect('/')->with('success', 'Le salarié a été correctement supprimé');
+       
+		salarie::whereIdSalarie($id_salarie)->first()->delete();
+		return view('welcome');
     }
 }

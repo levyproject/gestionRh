@@ -25,6 +25,11 @@ Route::get('/analyse', function () {
     return view('analyse');
 });
 
+Route::get('/delete/{id}', 'SalarieController@destroy')->name('deleteSalarie');
+
+
+Route::post('update/{id}', 'SalarieController@update')->name('updateSalarie');
+
 Route::resource('salarie', 'SalarieController');
 
 Route::resource('candidat', 'CandidatController');

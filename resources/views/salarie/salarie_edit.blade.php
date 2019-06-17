@@ -20,7 +20,7 @@
         </ul>
       </div><br />
     @endif
-      <form action="{{ route('salarie.update', $salarie->id_salarie) }}">
+      <form action="{{ route('updateSalarie', $salarie->id_salarie) }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">   
         <div class="form-group">
           <label for="Nom">Nom :</label>
