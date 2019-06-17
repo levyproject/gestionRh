@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
           <label for="niveau">Niveau d'étude :</label>
-          {{-- <select class="form-control" name="salarie_id_niveau">
+          <select class="form-control" name="salarie_id_niveau">
             @foreach ( $niveau_etudes as $niveau )
                 <option value="{{ $niveau->id_niveau }}" 
                  @if ($salarie->id_niveau == $niveau->id_niveau)
@@ -49,25 +49,19 @@
                  @endif
                 > {{ $niveau->designation }} </option>
             @endforeach
-          </select> --}}
-          <input type="number" class="form-control" name="salarie_id_niveau" value="{{ $salarie->id_niveau }}" />
+          </select>
         </div>
         <div class="form-group">
           <label for="suivi">Suivi Salarié:</label>
-          {{-- <select class="form-control" name="salarie_id_suivi"> --}}
-            {{-- @foreach ( $suivi_salaries as $suivi )
-                <option>{{ $suivi->motivation }}</option>
-            @endforeach --}}
-
-            {{-- @foreach ( $suivi_salarie as $suivi )
-              <option value="{{ $suivi->id_suivi }}" 
-                @if ($salarie->id_suivi == $niveau->id_niveau)
-                    selected=""
-                @endif
-              > {{ $suivi->motivation }} </option> --}}
-            {{-- @endforeach --}}
-          {{-- </select> --}}
-          <input type="number" class="form-control" name="salarie_id_suivi" value="{{ $salarie->id_suivi }}" />
+          <select class="form-control" name="salarie_id_suivi" required>
+            @foreach ( $suivi_salaries as $suivi )
+                <option
+                  @if ($suivi->id_suivi == 4)
+                      selected
+                  @endif
+                  value="{{ $suivi->id_suivi }}">{{ $suivi->motivation }}</option>
+            @endforeach
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Mettre à jour</button>
       </form>
