@@ -38,7 +38,7 @@
             <td>{{$candidat->annee_experience}}</td>
             <td>{{$candidat->pretention}} €</td>
             <td>{{$candidat->getNiveau()}}</td>
-            <td></td>
+            <td>{{$candidat->getPoste()}}</td>
             <td><a href="{{ route('candidat.edit', $candidat->id_candidat)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{{ route('candidat.destroy', $candidat->id_candidat)}}">
